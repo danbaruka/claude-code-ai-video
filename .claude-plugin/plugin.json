@@ -1,0 +1,10 @@
+{
+  "name": "video-courte",
+  "version": "1.0.0",
+  "description": "Vidéos verticales (TikTok, Reels, Shorts) dans un style blanc animé, à partir d'un seul fichier JSON : voix, sous-titres mot par mot, 16 scènes, logos, contrôle des débordements et rendu MP4, en peu de tokens.",
+  "author": { "name": "BDan (Dan Baruka)", "url": "https://github.com/danbaruka" },
+  "homepage": "https://github.com/danbaruka/video-courte",
+  "repository": "https://github.com/danbaruka/video-courte",
+  "license": "MIT",
+  "keywords": ["video", "shorts", "tiktok", "reels", "motion-design", "hyperframes", "sous-titres", "francais"]
+}

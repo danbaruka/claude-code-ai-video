@@ -1,0 +1,14 @@
+{
+  "name": "video-courte",
+  "owner": { "name": "BDan (Dan Baruka)", "url": "https://github.com/danbaruka" },
+  "metadata": { "description": "Le skill video-courte : des vidéos courtes animées dans un style blanc, en peu de tokens." },
+  "plugins": [
+    {
+      "name": "video-courte",
+      "source": "./",
+      "description": "Vidéos verticales (TikTok, Reels, Shorts) dans un style blanc animé, à partir d'un seul fichier JSON.",
+      "version": "1.0.0",
+      "license": "MIT"
+    }
+  ]
+}

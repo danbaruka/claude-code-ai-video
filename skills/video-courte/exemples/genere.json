@@ -1,0 +1,60 @@
+{
+  "id": "wallet-cle",
+  "titre": "Vos cryptos ne sont pas dans votre wallet",
+  "voix": { "nom": "fr-FR-RemyMultilingualNeural", "debit": "+4%" },
+  "marque": { "nom": "BDan", "visuel": "icone:etincelle" },
+  "prononcer": { "wallet": "ouallette", "MetaMask": "Méta Mask", "Ledger": "Lédjeur" },
+  "phrases": [
+    {
+      "texte": "Vos cryptos ne sont pas dans votre *wallet*.",
+      "scene": { "type": "titre", "lignes": ["Vos cryptos", "ne sont pas dans", "votre *wallet*"], "visuel": "icone:portefeuille" }
+    },
+    {
+      "texte": "Elles sont sur la *blockchain*, un grand registre public que tout le monde peut lire.",
+      "scene": { "type": "carte", "visuel": "icone:cube", "titre": "La *blockchain*", "texte": "Un registre public, copié sur des milliers d'ordinateurs", "pilules": ["Public", "Infalsifiable", "Ouvert 24 h/24"] }
+    },
+    {
+      "texte": "Votre wallet garde seulement une chose : la *clé* qui permet de les déplacer.",
+      "scene": { "type": "duel", "gauche": { "titre": "Vos cryptos", "texte": "Sur la blockchain", "visuel": "icone:cube" }, "droite": { "titre": "Votre wallet", "texte": "Garde la clé", "visuel": "icone:cle", "au": "wallet" }, "vs": "≠" }
+    },
+    {
+      "texte": "Cette clé tient en *douze mots*.",
+      "scene": { "type": "chiffre", "valeur": "12", "couleur": "accent", "apres": "mots", "label": "La phrase de récupération", "au": "douze" }
+    },
+    {
+      "texte": "On l'appelle la phrase de récupération.",
+      "scene": "suite"
+    },
+    {
+      "texte": "Celui qui a ces douze mots a vos cryptos, sur n'importe quel téléphone.",
+      "scene": { "type": "etapes", "items": [{ "texte": "Il tape les 12 mots", "au": "douze" }, { "texte": "Sur son téléphone", "au": "téléphone" }, { "texte": "Vos cryptos sont à lui", "detail": "Sans votre accord" }] }
+    },
+    {
+      "texte": "MetaMask, Ledger, Coinbase Wallet : tous marchent comme ça.",
+      "scene": { "type": "logos", "marques": [{ "visuel": "logo:metamask", "nom": "MetaMask", "au": "MetaMask" }, { "visuel": "logo:ledger", "nom": "Ledger", "au": "Ledger" }, { "visuel": "logo:coinbase", "nom": "Coinbase", "au": "Coinbase" }] }
+    },
+    {
+      "texte": "Vous perdez votre téléphone ? Vous ne perdez rien, si vous avez gardé les mots.",
+      "scene": { "type": "alerte", "niveau": "ok", "titre": "Téléphone perdu ?", "texte": "Rien n'est perdu si vous avez les 12 mots" }
+    },
+    {
+      "texte": "Quelqu'un vous les demande, même le *support* ? C'est une arnaque.",
+      "scene": { "type": "chat", "app": "Support Wallet", "visuel": "icone:bulle", "mention": "Exemple fictif", "messages": [{ "de": "lui", "texte": "Pour débloquer votre compte, envoyez votre phrase de 12 mots.", "au": "support" }, { "de": "moi", "texte": "Non. Personne n'en a besoin.", "au": "arnaque" }] }
+    },
+    {
+      "texte": "Aucun service sérieux n'en a besoin.",
+      "scene": { "type": "alerte", "niveau": "danger", "titre": "Ne donnez jamais vos 12 mots", "texte": "Ni au support, ni à un site, ni à un ami" }
+    },
+    {
+      "texte": "Retenez : un wallet, c'est un *trousseau de clés*, pas un coffre.",
+      "scene": { "type": "titre", "lignes": ["Un wallet,", "c'est un *trousseau*", "pas un coffre"], "visuel": "icone:cle" }
+    }
+  ],
+  "fin": { "texte": "Moi, c'est BDan.", "sous": "On parle de la nouvelle technologie." },
+  "publication": {
+    "titre": "Vos cryptos ne sont pas dans votre wallet",
+    "legende": "Votre wallet ne contient pas vos cryptos : il garde la clé. 12 mots, et celui qui les a… a tout. Gardez-les hors ligne, ne les donnez jamais.",
+    "hashtags": ["crypto", "wallet", "blockchain", "bitcoin", "securite"],
+    "commentaire": "Vous les avez notés où, vos 12 mots ? Papier, coffre, gestionnaire ?"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "une-video-un-fichier",
+  "titre": "Une vidéo, un seul fichier",
+  "voix": { "nom": "fr-FR-VivienneMultilingualNeural", "debit": "+2%" },
+  "marque": { "nom": "video-courte", "visuel": "icone:video" },
+  "couleurs": { "accent": "#2f6bff", "accent2": "#5fa3ff" },
+  "prononcer": { "JSON": "jason", "MP4": "èm pé quatre", "Claude Code": "Clôde Code" },
+  "phrases": [
+    {
+      "texte": "Cette vidéo tient dans *un seul fichier*.",
+      "scene": { "type": "titre", "lignes": ["Une vidéo,", "*un seul fichier*"], "visuel": "icone:doc" }
+    },
+    {
+      "texte": "Vous écrivez le texte et le visuel de chaque phrase.",
+      "scene": { "type": "terminal", "titre": "video.json", "lignes": ["\"texte\": \"Cette vidéo tient…\"", "\"scene\": { \"type\": \"titre\" }"] }
+    },
+    {
+      "texte": "Une commande fait la voix, les sous-titres et l'animation.",
+      "scene": { "type": "liste", "items": [{ "texte": "La voix", "visuel": "icone:micro", "au": "voix" }, { "texte": "Les sous-titres", "visuel": "icone:bulle", "au": "sous-titres" }, { "texte": "L'animation", "visuel": "icone:etincelle", "au": "animation" }] }
+    },
+    {
+      "texte": "Vos captures d'écran entrent dans un *vrai téléphone*.",
+      "scene": { "type": "telephone", "image": "medias/couverture.jpg", "pilules": [{ "texte": "Votre capture", "visuel": "icone:appareil", "au": "captures" }, { "texte": "Défile seule", "au": "téléphone" }] }
+    },
+    {
+      "texte": "Une page web s'ouvre dans un navigateur.",
+      "scene": { "type": "navigateur", "url": "github.com/danbaruka/video-courte", "titre": "video-courte", "texte": "Des vidéos verticales dans un style blanc net, en peu de tokens.", "pilule": "Open source" }
+    },
+    {
+      "texte": "Avant de rendre, un contrôle cherche le texte qui déborde.",
+      "scene": { "type": "image", "src": "medias/planche.jpg", "legende": "Une seule planche à relire" }
+    },
+    {
+      "texte": "Résultat : trois fois moins de texte à écrire par vidéo.",
+      "scene": { "type": "graphique", "titre": "Lignes écrites par vidéo", "barres": [{ "label": "Avant", "valeur": 250 }, { "label": "Avec le skill", "valeur": 80 }], "fort": 1 }
+    },
+    {
+      "texte": "Le style reste le même, les visuels changent à chaque idée.",
+      "scene": { "type": "citation", "texte": "Un style fixe, un *visuel neuf* pour chaque idée.", "auteur": "La règle du skill", "visuel": "icone:etincelle" }
+    }
+  ],
+  "fin": { "texte": "video-courte", "sous": "Gratuit et open source" }
+}
