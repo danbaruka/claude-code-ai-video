@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 // Fabrique une vidéo verticale (1080 × 1920) à partir d'un seul fichier video.json : voix, calage des mots,
 // sous-titres, scènes animées, musique, contrôle des débordements, planche d'aperçu, rendu MP4.
-//   node fabriquer.mjs videos/ma-video.json [autres.json…] [--rendu] [--brouillon] [--sans-controle] [--sans-planche]
+//   node make.mjs videos/ma-video.json [autres.json…] [--rendu] [--brouillon] [--sans-controle] [--sans-planche]
 // Tout ce qui est produit va à côté du json : fabrique/<id>/ (travail) et rendus/<id>.mp4, -planche.jpg, -couverture.jpg, .txt
 import { execFileSync, spawnSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ic, ICONES } from "./lib/icones.mjs";
+import { ic, ICONES } from "./lib/icons.mjs";
 import { CACHE, gsap, logoMarque, slug } from "./lib/logos.mjs";
 import { RUNTIME } from "./lib/runtime.mjs";
 import { boite, riche, SCENES, TYPES } from "./lib/scenes.mjs";
-import { arr, caler, esc, jetons, legendes, norm, texteVoix } from "./lib/texte.mjs";
+import { arr, caler, esc, jetons, legendes, norm, texteVoix } from "./lib/text.mjs";
 
 const ICI = dirname(fileURLToPath(import.meta.url));
 const SKILL = join(ICI, "..");
@@ -24,7 +24,7 @@ const args = process.argv.slice(2);
 const option = (n) => args.includes(`--${n}`);
 const fichiers = args.filter((a) => !a.startsWith("--"));
 if (!fichiers.length) {
-  console.error("usage : node fabriquer.mjs <video.json>… [--rendu] [--brouillon] [--sans-controle] [--sans-planche]");
+  console.error("usage : node make.mjs <video.json>… [--rendu] [--brouillon] [--sans-controle] [--sans-planche]");
   process.exit(1);
 }
 const lancer = (cmd, a, o = {}) => execFileSync(cmd, a, { encoding: "utf8", maxBuffer: 1 << 28, env: ENV, ...o });
@@ -71,8 +71,8 @@ async function fabriquer(fichierJson) {
     const v = { nom: "fr-FR-RemyMultilingualNeural", debit: "+4%", ...(spec.voix ?? {}) };
     const demande = { voix: v, blanc: spec.blanc ?? 0.35, phrases: phrases.map((p) => ({ texte: texteVoix(p.texte, spec.prononcer), pause: p.pause ?? 0 })) };
     writeFileSync(join(TRAVAIL, "demande.json"), JSON.stringify(demande));
-    const r = spawnSync(python(), [join(ICI, "voix.py"), join(TRAVAIL, "demande.json"), TRAVAIL], { encoding: "utf8", env: ENV });
-    if (r.status !== 0) throw new Error(`voix : ${(r.stderr || r.stdout).trim().split("\n").slice(-3).join(" ")}${/edge_tts/.test(r.stderr) ? " (lancez scripts/installer.sh)" : ""}`);
+    const r = spawnSync(python(), [join(ICI, "voice.py"), join(TRAVAIL, "demande.json"), TRAVAIL], { encoding: "utf8", env: ENV });
+    if (r.status !== 0) throw new Error(`voix : ${(r.stderr || r.stdout).trim().split("\n").slice(-3).join(" ")}${/edge_tts/.test(r.stderr) ? " (lancez scripts/install.sh)" : ""}`);
     const voix = JSON.parse(readFileSync(join(TRAVAIL, "voix.json"), "utf8"));
     phrases.forEach((p, i) => {
       const vp = voix.phrases[i];
@@ -220,7 +220,7 @@ async function fabriquer(fichierJson) {
     fin ? `scene("fin", ${arr(tFin - 0.2)}, ${DUREE}, "zoom", "aucune"); entre("#fin-v", ${arr(tFin)}, "pop"); entre("#fin-t", ${arr(tFin + 0.15)}, "monte"); entre("#fin-s", ${arr(tFin + 0.3)}, "monte");` : "",
   ].join("\n");
   const html = `<!doctype html>
-<!-- ${esc(spec.titre ?? id)} · fabriqué par video-courte (style blanc) -->
+<!-- ${esc(spec.titre ?? id)} · fabriqué par claude-code-ai-video (style blanc) -->
 <html lang="${spec.langue ?? "fr"}">
   <head>
     <meta charset="UTF-8" />

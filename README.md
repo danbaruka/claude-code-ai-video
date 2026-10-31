@@ -1,153 +1,165 @@
-# video-courte
+# claude-code-ai-video
 
-**Des vidéos verticales (TikTok, Reels, Shorts) dans un style blanc net et animé, fabriquées par Claude à partir d'un seul fichier.**
-Vous donnez une idée. Claude écrit le texte, fait la voix, cale les sous-titres mot par mot, anime chaque scène, pose la musique, vérifie qu'aucun texte ne déborde de l'écran et rend le MP4. Il faut 2 à 3 minutes par vidéo, et peu de tokens.
+**`ai-video`, a Claude Code skill that turns one small JSON file into a vertical short video (TikTok, Reels, YouTube Shorts) in a clean, animated white style.**
+You give Claude an idea. Claude:
+- writes the script and makes the voice;
+- syncs the captions word by word and animates every scene;
+- adds music, checks that no text overflows the screen, and renders the MP4.
+
+It takes 2 to 3 minutes per video, and few tokens.
 
 <p align="center">
-  <img src="docs/apercu-genere.gif" width="260" alt="Extrait d'une vidéo générée : titre, compteur, logos" />
-  &nbsp;&nbsp;
-  <img src="docs/apercu-images.gif" width="260" alt="Extrait d'une vidéo avec captures : iPhone, navigateur, graphique" />
+  <img src="docs/preview-english.gif" width="250" alt="Generated video in English: title, counter, logos" />
+  &nbsp;
+  <img src="docs/preview-french.gif" width="250" alt="Generated video in French" />
+  &nbsp;
+  <img src="docs/preview-images.gif" width="250" alt="Video with screenshots: iPhone, browser, chart" />
 </p>
 
-Gratuit et open source (licence MIT). La voix gratuite par défaut ne demande ni clé ni abonnement.
+Free and open source (MIT). The default voice is free and needs no API key or subscription. Works in English, French and many other languages.
+
+> Community project, not affiliated with or endorsed by Anthropic. "Claude" and "Claude Code" are trademarks of Anthropic.
 
 ---
 
-## Ce que ça fait
+## What it does
 
 | | |
 |---|---|
-| **3 modes** | **Généré à 100 %** (voix de synthèse et motion design) · **avec images** (vos captures dans un vrai iPhone, un navigateur, des photos) · **filmé** (sous-titres et scènes animées sur votre rush) |
-| **16 scènes prêtes** | titre, chiffre qui compte, liste, étapes, duel, logos en orbite, téléphone, navigateur, image, conversation, alerte, graphique, terminal, citation, carte, et une scène libre |
-| **Les vrais logos** | plus de 3 000 marques ([Simple Icons](https://simpleicons.org)), plus les wallets, exchanges et cryptos ([web3icons](https://github.com/0xa3k5/web3icons)) |
-| **Les voix** | 13 voix françaises gratuites (France, Québec, Belgique, Suisse), des centaines dans d'autres langues, ou votre voix enregistrée, ou une voix clonée |
-| **Le contrôle** | chaque vidéo est vérifiée (texte qui déborde, texte caché, erreurs), puis résumée sur **une** planche d'aperçu |
-| **Le son** | voix à -16 LUFS, musique qui s'efface sous la voix, souffles aux transitions, mixage final à -14 LUFS (la norme des réseaux) |
-| **La publication** | couverture (l'image 1), titre, légende, hashtags, commentaire à épingler, et un guide des heures et de la cadence |
+| **3 modes** | **Fully generated** (neural voice and motion design) · **with images** (your screenshots in a real iPhone or a browser, photos) · **filmed** (captions and animated scenes over your talking-head clip) |
+| **16 ready-made scenes** | title, counting number, list, steps, versus, orbiting logos, phone, browser, image, chat, alert, chart, terminal, quote, card, plus a free-form scene |
+| **Real logos** | 3,000+ brands ([Simple Icons](https://simpleicons.org)), plus crypto wallets, exchanges, networks and tokens ([web3icons](https://github.com/0xa3k5/web3icons)) |
+| **Voices** | hundreds of free neural voices (English, French, Spanish…), your own recording, or a cloned voice |
+| **Quality check** | every video is checked (overflowing text, hidden text, errors), then summed up on **one** contact sheet |
+| **Sound** | voice at -16 LUFS, music that ducks under the voice, whooshes on transitions, final mix at -14 LUFS (the social-media standard) |
+| **Publishing** | cover (frame 1), title, caption, hashtags, pinned comment, plus a guide to posting times and cadence |
 
-<p align="center"><img src="docs/planche-genere.jpg" width="720" alt="La planche de contrôle d'une vidéo : une vignette par scène" /></p>
+<p align="center"><img src="docs/contact-sheet-english.jpg" width="720" alt="The contact sheet of a video: one thumbnail per scene" /></p>
 
-## Pourquoi ça consomme peu de tokens
+## Why it uses so few tokens
 
-D'habitude, faire une vidéo animée avec une IA, c'est lui faire écrire 250 à 400 lignes de HTML et d'animation, puis lui faire regarder des dizaines de captures.
-Ici, Claude écrit **un fichier JSON de 60 à 120 lignes** : les phrases, et une scène par idée.
-Le script fait le reste, sans que Claude relise le code. Pour vérifier, il regarde **une seule image**, la planche.
+**The usual way.** Making an animated video with an AI usually means having it write 250 to 400 lines of HTML and animation code, then look at dozens of screenshots.
 
-Un lot de 10 vidéos, c'est 10 fichiers et **une** commande.
+**Here.** Claude writes **one JSON file of 60 to 120 lines**: the sentences, and one scene per idea.
+- The bundled script does the rest, and Claude never reads its code.
+- To check the result, Claude looks at **one image**: the contact sheet.
+- In a blind test, a fresh agent made a finished 60-second video with about 65,000 tokens in total, including reading the skill.
 
-## Installer
+A batch of 10 videos is 10 files and **one** command.
 
-Il faut [Claude Code](https://claude.com/claude-code), **Node 18+**, **ffmpeg** et **Python 3** :
-- macOS : `brew install node ffmpeg python` ;
-- Ubuntu : `sudo apt install nodejs ffmpeg python3-venv`.
+## Install
 
-**Option 1 : en plugin** (le plus simple)
+You need [Claude Code](https://claude.com/claude-code), **Node 18+**, **ffmpeg** and **Python 3**:
+- macOS: `brew install node ffmpeg python`;
+- Ubuntu: `sudo apt install nodejs ffmpeg python3-venv`.
+
+**Option 1: as a plugin** (easiest)
 ```
-/plugin marketplace add danbaruka/video-courte
-/plugin install video-courte@video-courte
+/plugin marketplace add danbaruka/claude-code-ai-video
+/plugin install ai-video@ai-video
 ```
 
-**Option 2 : à la main**
+**Option 2: by hand**
 ```sh
-git clone https://github.com/danbaruka/video-courte.git
-cp -r video-courte/skills/video-courte ~/.claude/skills/        # pour tous vos projets
-# ou : cp -r video-courte/skills/video-courte .claude/skills/   # pour un seul projet
+git clone https://github.com/danbaruka/claude-code-ai-video.git
+cp -r claude-code-ai-video/skills/ai-video ~/.claude/skills/        # for all your projects
+# or: cp -r claude-code-ai-video/skills/ai-video .claude/skills/   # for one project
 ```
 
-Ensuite, **une seule fois** :
+Then, **once**:
 ```sh
-sh ~/.claude/skills/video-courte/scripts/installer.sh            # installe la voix gratuite (edge-tts) à part
+sh ~/.claude/skills/ai-video/scripts/install.sh     # installs the free voice (edge-tts) in its own venv
 ```
-Si vous l'oubliez, Claude le lance de lui-même à la première vidéo.
+If you forget, Claude runs it by itself before the first video.
 
-## S'en servir
+## Use it
 
-Parlez à Claude normalement :
+Just talk to Claude:
 
-> Fais-moi une vidéo courte sur les 3 erreurs qui font perdre des cryptos.
+> Make a short video about the 3 mistakes that make people lose their crypto.
 
-> Fais 5 vidéos sur la sécurité des wallets, voix québécoise, accent bleu.
+> Make 5 videos on wallet security, British voice, blue accent.
 
-> Voici mon rush `medias/rush.mp4` : ajoute les sous-titres et deux scènes animées.
+> Here's my clip `medias/clip.mp4`: add captions and two animated scenes.
 
-> Mets ces 3 captures dans une vidéo qui explique comment activer la 2FA sur Binance.
+> Put these 3 screenshots in a video explaining how to turn on 2FA on Binance.
 
-Claude écrit `videos/<id>.json`, lance la fabrication, relit la planche, corrige, puis rend la vidéo dans `videos/rendus/`.
+Claude writes `videos/<id>.json`, builds it, reviews the contact sheet, fixes what needs fixing, then renders the video into `videos/rendus/`.
 
-Vous pouvez aussi lancer le script vous-même :
+You can also run the script yourself:
 ```sh
-node ~/.claude/skills/video-courte/scripts/fabriquer.mjs videos/ma-video.json            # voix + page + contrôle + planche
-node ~/.claude/skills/video-courte/scripts/fabriquer.mjs videos/*.json --rendu           # tout un lot, en MP4
+node ~/.claude/skills/ai-video/scripts/make.mjs videos/my-video.json            # voice + page + check + contact sheet
+node ~/.claude/skills/ai-video/scripts/make.mjs videos/*.json --rendu           # a whole batch, as MP4s
 ```
 
-## Le fichier d'une vidéo
+## A video file
 
 ```json
 {
-  "id": "wallet-cle",
-  "voix": { "nom": "fr-FR-RemyMultilingualNeural" },
+  "id": "wallet-key",
+  "langue": "en",
+  "voix": { "nom": "en-US-AndrewMultilingualNeural" },
   "marque": { "nom": "BDan", "visuel": "icone:etincelle" },
   "phrases": [
-    { "texte": "Vos cryptos ne sont pas dans votre *wallet*.",
-      "scene": { "type": "titre", "lignes": ["Vos cryptos", "ne sont pas dans", "votre *wallet*"], "visuel": "icone:portefeuille" } },
-    { "texte": "Cette clé tient en *douze mots*.",
-      "scene": { "type": "chiffre", "valeur": "12", "apres": "mots", "au": "douze" } },
-    { "texte": "MetaMask, Ledger, Coinbase : tous marchent comme ça.",
-      "scene": { "type": "logos", "marques": ["metamask", "ledger", "coinbase"] } }
+    { "texte": "Your crypto is not in your *wallet*.",
+      "scene": { "type": "titre", "lignes": ["Your crypto", "is not in", "your *wallet*"], "visuel": "icone:portefeuille" } },
+    { "texte": "That key fits in *twelve words*.",
+      "scene": { "type": "chiffre", "valeur": "12", "apres": "words", "au": "twelve" } },
+    { "texte": "MetaMask, Ledger, Phantom: they all work this way.",
+      "scene": { "type": "logos", "marques": ["metamask", "ledger", "phantom"] } }
   ]
 }
 ```
 
-- `*mot*` est le mot fort : il s'affiche en italique de couleur, il bat quand la voix le dit, et la caméra pousse dessus.
-- `au` fait arriver un élément sur un mot précis.
+- `*word*` is the strong word: it shows in coloured italics, pulses when spoken, and the camera pushes in on it.
+- `au` makes an element appear on a given word.
+- The JSON keys are French (`phrases`, `texte`, `scene`…); the spoken text can be in any language.
 
-Deux exemples complets :
-- [`exemples/genere.json`](skills/video-courte/exemples/genere.json) : 100 % généré, crypto ;
-- [`exemples/images.json`](skills/video-courte/exemples/images.json) : captures, navigateur, graphique.
+Three full examples:
 
-Le catalogue des scènes est dans [`references/scenes.md`](skills/video-courte/references/scenes.md).
+| File | Content |
+|---|---|
+| [`examples/english.json`](skills/ai-video/examples/english.json) | English, fully generated |
+| [`examples/generated.json`](skills/ai-video/examples/generated.json) | French, fully generated |
+| [`examples/with-images.json`](skills/ai-video/examples/with-images.json) | French, with screenshots, a browser and a chart |
 
-## Ce que contient le dépôt
+The scene catalog is in [`references/scenes.md`](skills/ai-video/references/scenes.md).
+
+## What's in the repo
 
 ```
-skills/video-courte/
-├── SKILL.md              ← ce que Claude lit : le déroulé, les règles d'économie, le format
+skills/ai-video/
+├── SKILL.md              ← what Claude reads: the workflow, the token-saving rules, the format
 ├── references/
-│   ├── ecrire.md         ← accroches qui marchent, structure, règles d'écriture
-│   ├── scenes.md         ← les 16 scènes, leurs paramètres, les icônes, la mise en page
-│   ├── modes.md          ← voix, captures, rush filmé, musique
-│   └── publier.md        ← heures selon le public, cadence, légende, case « IA »
+│   ├── writing.md        ← hooks that work, structure, writing rules
+│   ├── scenes.md         ← the 16 scenes, their parameters, icons, layout
+│   ├── modes.md          ← voices, screenshots, filmed clips, music
+│   └── publishing.md     ← posting times by audience, cadence, captions, the "AI" checkbox
 ├── scripts/
-│   ├── fabriquer.mjs     ← json → voix → page HyperFrames → contrôle → planche → MP4
-│   ├── voix.py           ← la voix edge-tts, avec le temps de chaque mot
-│   ├── installer.sh
-│   └── lib/              ← texte et sous-titres, scènes, icônes, logos, animations
-├── assets/               ← le style blanc (style.css) et ses polices libres
-└── exemples/
+│   ├── make.mjs          ← json → voice → HyperFrames page → check → contact sheet → MP4
+│   ├── voice.py          ← the edge-tts voice, with each word's timing
+│   ├── install.sh
+│   └── lib/              ← text and captions, scenes, icons, logos, animations
+├── assets/               ← the white style (style.css) and its free fonts
+└── examples/
 ```
 
-## Vie privée
+## Privacy
 
-Tout se fabrique sur votre machine : le rendu (HyperFrames et Chrome sans fenêtre) et la transcription (whisper).
-Seuls partent sur Internet :
-- le texte des phrases, envoyé au service de voix de Microsoft, en mode généré ;
-- le premier téléchargement des outils et des logos.
+Everything is built on your machine: the render (HyperFrames and headless Chrome) and the transcription (whisper).
 
-La télémétrie d'HyperFrames est coupée par le script.
+Only these go over the Internet:
+- in generated mode, the sentence text, sent to Microsoft's voice service;
+- the first download of the tools and logos.
 
-## Crédits et licences
+The script turns HyperFrames telemetry off.
 
-- Le code et le style de ce dépôt sont sous [licence MIT](LICENSE). © 2026 BDan (Dan Baruka).
-- Le rendu se fait avec [HyperFrames](https://github.com/heygen-com/hyperframes) (Apache-2.0), téléchargé par npx.
-- L'animation utilise [GSAP](https://gsap.com) (licence standard GSAP, gratuite), téléchargé au premier lancement.
-- Les polices sont [Inter](https://rsms.me/inter/) et [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) (SIL Open Font License, fichiers dans `assets/fonts/`).
-- Les logos viennent de [Simple Icons](https://simpleicons.org) (CC0) et de [web3icons](https://github.com/0xa3k5/web3icons) (MIT). Les marques restent à leurs propriétaires : montrez-les pour en parler, pas pour faire croire à un partenariat.
-- La voix est faite par [edge-tts](https://github.com/rany2/edge-tts) (LGPL-3.0), installé à part par `installer.sh`.
+## Credits and licences
 
----
-
-### English
-
-**video-courte** is a Claude Code skill that turns one small JSON file into a vertical short video (TikTok / Reels / Shorts) with a clean white animated style. It covers fully generated videos (free neural voice and motion design), videos with your screenshots or photos, and talking-head videos.
-Claude writes the script and the JSON. The bundled script does the voice, word-level captions, 16 animated scene types, real brand logos, music ducking, overflow checks, a one-image contact sheet and the MP4 render.
-That keeps token use low. The skill's text is in French. It works in English too: set `"langue": "en"` and pick an `en-US-…` voice.
+- This repo's code and style: [MIT licence](LICENSE). © 2026 BDan (Dan Baruka).
+- Rendering uses [HyperFrames](https://github.com/heygen-com/hyperframes) (Apache-2.0), fetched by npx.
+- Animation uses [GSAP](https://gsap.com) (GSAP standard licence, free), downloaded on first run.
+- Fonts: [Inter](https://rsms.me/inter/) and [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif), under the SIL Open Font License. The files are in `assets/fonts/`.
+- Logos: [Simple Icons](https://simpleicons.org) (CC0) and [web3icons](https://github.com/0xa3k5/web3icons) (MIT).
+  - Brands belong to their owners. Show them to talk about them, not to suggest a partnership.
+- Voice: [edge-tts](https://github.com/rany2/edge-tts) (LGPL-3.0), installed separately by `install.sh`.

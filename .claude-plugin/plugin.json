@@ -1,10 +1,10 @@
 {
-  "name": "video-courte",
-  "version": "1.0.0",
-  "description": "Vidéos verticales (TikTok, Reels, Shorts) dans un style blanc animé, à partir d'un seul fichier JSON : voix, sous-titres mot par mot, 16 scènes, logos, contrôle des débordements et rendu MP4, en peu de tokens.",
+  "name": "ai-video",
+  "version": "1.1.0",
+  "description": "Short vertical videos (TikTok, Reels, Shorts) in a clean animated white style, from one small JSON file: voice, word-synced captions, 16 scenes, real logos, overflow check and MP4 render, with very few tokens.",
   "author": { "name": "BDan (Dan Baruka)", "url": "https://github.com/danbaruka" },
-  "homepage": "https://github.com/danbaruka/video-courte",
-  "repository": "https://github.com/danbaruka/video-courte",
+  "homepage": "https://github.com/danbaruka/claude-code-ai-video",
+  "repository": "https://github.com/danbaruka/claude-code-ai-video",
   "license": "MIT",
-  "keywords": ["video", "shorts", "tiktok", "reels", "motion-design", "hyperframes", "sous-titres", "francais"]
+  "keywords": ["video", "shorts", "tiktok", "reels", "motion-design", "hyperframes", "captions", "faceless"]
 }

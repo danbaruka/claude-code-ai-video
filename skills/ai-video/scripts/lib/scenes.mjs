@@ -2,7 +2,7 @@
 // Les positions sont celles d'un écran 1080 × 1920 : sous-titres en haut (y 250 à 520), contenu entre y 560 et 1400,
 // marque en bas à gauche (y 1436), rien sous y 1520 (l'interface des réseaux le couvre).
 // Le js appelle les fonctions de la page (runtime.mjs) : entre, sort, pulse, secoue, trace, tape, compteur…
-import { arr, esc, jetons, norm } from "./texte.mjs";
+import { arr, esc, jetons, norm } from "./text.mjs";
 
 export const TYPES = ["titre", "chiffre", "liste", "etapes", "duel", "logos", "telephone", "navigateur", "image", "chat",
   "alerte", "graphique", "terminal", "citation", "carte", "html"];

@@ -1,13 +1,13 @@
 {
-  "name": "video-courte",
+  "name": "ai-video",
   "owner": { "name": "BDan (Dan Baruka)", "url": "https://github.com/danbaruka" },
-  "metadata": { "description": "Le skill video-courte : des vidéos courtes animées dans un style blanc, en peu de tokens." },
+  "metadata": { "description": "The ai-video skill: animated short videos in a clean white style, with very few tokens." },
   "plugins": [
     {
-      "name": "video-courte",
+      "name": "ai-video",
       "source": "./",
-      "description": "Vidéos verticales (TikTok, Reels, Shorts) dans un style blanc animé, à partir d'un seul fichier JSON.",
-      "version": "1.0.0",
+      "description": "Short vertical videos (TikTok, Reels, Shorts) in a clean animated white style, from one small JSON file.",
+      "version": "1.1.0",
       "license": "MIT"
     }
   ]

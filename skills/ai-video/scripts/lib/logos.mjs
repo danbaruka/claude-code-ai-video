@@ -9,7 +9,7 @@ import { join } from "node:path";
 
 const SI = "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0";
 const W3 = "https://cdn.jsdelivr.net/npm/@web3icons/core@4.0.58/dist/svgs";
-export const CACHE = join(process.env.XDG_CACHE_HOME ?? join(homedir(), ".cache"), "video-courte");
+export const CACHE = join(process.env.XDG_CACHE_HOME ?? join(homedir(), ".cache"), "ai-video");
 
 // le slug d'une marque, comme Simple Icons le calcule depuis son nom (« Trust Wallet » → « trustwallet »)
 const REMPLACE = { "+": "plus", ".": "dot", "&": "and", đ: "d", ħ: "h", ı: "i", ĸ: "k", ŀ: "l", ł: "l", ß: "ss", ŧ: "t" };

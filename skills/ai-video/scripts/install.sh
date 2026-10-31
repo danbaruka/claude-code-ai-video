@@ -1,7 +1,7 @@
 #!/bin/sh
-# Prépare video-courte une fois pour toutes : vérifie Node, ffmpeg, Python, et installe edge-tts (la voix gratuite)
+# Prépare ai-video une fois pour toutes : vérifie Node, ffmpeg, Python, et installe edge-tts (la voix gratuite)
 # dans un environnement Python à part (scripts/../.venv), sans rien toucher au reste de la machine.
-#   sh scripts/installer.sh
+#   sh scripts/install.sh
 set -e
 ICI=$(cd "$(dirname "$0")/.." && pwd)
 manque=""
@@ -19,5 +19,5 @@ if [ ! -x "$ICI/.venv/bin/python" ]; then
   python3 -m venv "$ICI/.venv"
 fi
 "$ICI/.venv/bin/pip" install -q --upgrade pip edge-tts
-echo "✓ video-courte est prêt. Premier essai :"
-echo "  node $ICI/scripts/fabriquer.mjs $ICI/exemples/genere.json"
+echo "✓ ai-video est prêt. Premier essai :"
+echo "  node $ICI/scripts/make.mjs $ICI/examples/generated.json"

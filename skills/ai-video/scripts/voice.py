@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """La voix de synthèse d'une vidéo (edge-tts : voix Microsoft gratuite, sans clé), phrase par phrase,
-avec le temps de chaque mot. Appelé par fabriquer.mjs ; on ne le lance pas à la main.
+avec le temps de chaque mot. Appelé par make.mjs ; on ne le lance pas à la main.
 
     python voix.py demande.json dossier/
 

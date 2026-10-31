@@ -2,7 +2,7 @@
   "id": "une-video-un-fichier",
   "titre": "Une vidéo, un seul fichier",
   "voix": { "nom": "fr-FR-VivienneMultilingualNeural", "debit": "+2%" },
-  "marque": { "nom": "video-courte", "visuel": "icone:video" },
+  "marque": { "nom": "claude-code-ai-video", "visuel": "icone:video" },
   "couleurs": { "accent": "#2f6bff", "accent2": "#5fa3ff" },
   "prononcer": { "JSON": "jason", "MP4": "èm pé quatre", "Claude Code": "Clôde Code" },
   "phrases": [
@@ -20,15 +20,15 @@
     },
     {
       "texte": "Vos captures d'écran entrent dans un *vrai téléphone*.",
-      "scene": { "type": "telephone", "image": "medias/couverture.jpg", "pilules": [{ "texte": "Votre capture", "visuel": "icone:appareil", "au": "captures" }, { "texte": "Défile seule", "au": "téléphone" }] }
+      "scene": { "type": "telephone", "image": "media/cover.jpg", "pilules": [{ "texte": "Votre capture", "visuel": "icone:appareil", "au": "captures" }, { "texte": "Défile seule", "au": "téléphone" }] }
     },
     {
       "texte": "Une page web s'ouvre dans un navigateur.",
-      "scene": { "type": "navigateur", "url": "github.com/danbaruka/video-courte", "titre": "video-courte", "texte": "Des vidéos verticales dans un style blanc net, en peu de tokens.", "pilule": "Open source" }
+      "scene": { "type": "navigateur", "url": "github.com/danbaruka/claude-code-ai-video", "titre": "claude-code-ai-video", "texte": "Des vidéos verticales dans un style blanc net, en peu de tokens.", "pilule": "Open source" }
     },
     {
       "texte": "Avant de rendre, un contrôle cherche le texte qui déborde.",
-      "scene": { "type": "image", "src": "medias/planche.jpg", "legende": "Une seule planche à relire" }
+      "scene": { "type": "image", "src": "media/sheet.jpg", "legende": "Une seule planche à relire" }
     },
     {
       "texte": "Résultat : trois fois moins de texte à écrire par vidéo.",
@@ -39,5 +39,5 @@
       "scene": { "type": "citation", "texte": "Un style fixe, un *visuel neuf* pour chaque idée.", "auteur": "La règle du skill", "visuel": "icone:etincelle" }
     }
   ],
-  "fin": { "texte": "video-courte", "sous": "Gratuit et open source" }
+  "fin": { "texte": "AI video", "sous": "Gratuit et open source" }
 }

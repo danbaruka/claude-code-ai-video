@@ -1,0 +1,24 @@
+{
+  "id": "wallet-key",
+  "titre": "Your crypto is not in your wallet",
+  "langue": "en",
+  "voix": { "nom": "en-US-AndrewMultilingualNeural", "debit": "+4%" },
+  "marque": { "nom": "BDan", "visuel": "icone:etincelle" },
+  "phrases": [
+    { "texte": "Your crypto is not in your *wallet*.",
+      "scene": { "type": "titre", "lignes": ["Your crypto", "is not in", "your *wallet*"], "visuel": "icone:portefeuille" } },
+    { "texte": "It lives on the *blockchain*, a public ledger anyone can read.",
+      "scene": { "type": "carte", "visuel": "icone:cube", "titre": "The *blockchain*", "texte": "A public ledger, copied on thousands of computers", "pilules": ["Public", "Tamper-proof"] } },
+    { "texte": "Your wallet only keeps the *key* that can move it.",
+      "scene": { "type": "duel", "gauche": { "titre": "Your crypto", "texte": "On the blockchain", "visuel": "icone:cube" }, "droite": { "titre": "Your wallet", "texte": "Keeps the key", "visuel": "icone:cle", "au": "wallet" }, "vs": "≠" } },
+    { "texte": "That key fits in *twelve words*.",
+      "scene": { "type": "chiffre", "valeur": "12", "couleur": "accent", "apres": "words", "label": "The recovery phrase", "au": "twelve" } },
+    { "texte": "MetaMask, Ledger, Phantom: they all work this way.",
+      "scene": { "type": "logos", "marques": [{ "visuel": "logo:metamask", "nom": "MetaMask", "au": "MetaMask" }, { "visuel": "logo:ledger", "nom": "Ledger", "au": "Ledger" }, { "visuel": "logo:phantom", "nom": "Phantom", "au": "Phantom" }] } },
+    { "texte": "Anyone who asks for those words, even *support*, is a thief.",
+      "scene": { "type": "alerte", "niveau": "danger", "titre": "Never share your 12 words", "texte": "Not with support, not with a website" } },
+    { "texte": "A wallet is a *keyring*, not a safe.",
+      "scene": { "type": "titre", "lignes": ["A wallet is", "a *keyring*", "not a safe"], "visuel": "icone:cle" } }
+  ],
+  "fin": { "texte": "I'm BDan.", "sous": "Let's talk new tech." }
+}
