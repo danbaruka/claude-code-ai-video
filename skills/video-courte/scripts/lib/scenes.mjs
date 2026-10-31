@@ -127,7 +127,7 @@ export const SCENES = {
     if (p.perdant) {
       const k = p.perdant === "gauche" ? "g" : "d", autre = k === "g" ? "d" : "g";
       const tp = c.mot(p.au_perdant ?? "") ?? Math.max(td + 1, (td + c.fin) / 2);
-      js.push(`tl.to("#${c.id}-${k}", { opacity: 0.5, scale: 0.94, filter: "grayscale(1)", duration: 0.4 }, ${arr(tp)}); tl.set("#${c.id}-${k} .barre path", { opacity: 1 }, ${arr(tp + 0.05)});
+      js.push(`tl.to("#${c.id}-${k}", { opacity: 0.5, scale: 0.94, filter: "grayscale(1)", duration: 0.4 }, ${arr(tp)}); tl.set("#${c.id}-${k} .barre path", { opacity: 0.7 }, ${arr(tp + 0.05)});
         trace("#${c.id}-${k}-x1", ${arr(tp + 0.05)}, 0.25); trace("#${c.id}-${k}-x2", ${arr(tp + 0.25)}, 0.25);
         tl.to("#${c.id}-${autre}", { scale: 1.06, duration: 0.45, ease: "back.out(2)" }, ${arr(tp + 0.1)});`);
     }

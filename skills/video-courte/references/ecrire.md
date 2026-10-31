@@ -12,7 +12,7 @@ Ce guide vient de l'analyse de comptes francophones tech et IA qui percent (octo
 | 3-9 | **Le contenu** : 3 à 5 points concrets, un par phrase ou deux | 30-45 s | « Le premier, c'est… Il fait… » |
 | 10 | **La nuance ou le piège**, qui rend le propos honnête | 4-6 s | « Pas encore. La nouvelle version est en chantier. » |
 | 11 | **La phrase à retenir** | 3 s | « Un wallet, c'est un trousseau de clés, pas un coffre. » |
-| 12 | **La suite** : une raison de s'abonner, liée au sujet | 3 s | « Abonnez-vous pour d'autres outils comme ça. » |
+| 12 | **La suite** : une raison de s'abonner, liée au sujet (facultatif : avec une carte `fin` signée, la phrase à retenir suffit) | 3 s | « Abonnez-vous pour d'autres outils comme ça. » |
 
 ## Les accroches qui marchent (formules observées sur des vidéos de 10 000 à 50 000 vues)
 

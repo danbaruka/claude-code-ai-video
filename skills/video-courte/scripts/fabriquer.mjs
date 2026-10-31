@@ -17,8 +17,9 @@ const ICI = dirname(fileURLToPath(import.meta.url));
 const SKILL = join(ICI, "..");
 const HF = "hyperframes@0.8.92";
 const ENV = { ...process.env, HYPERFRAMES_NO_TELEMETRY: "1", DO_NOT_TRACK: "1", HYPERFRAMES_SKIP_SKILLS: "1" };
-// « nested_structure » ne concerne que l affichage dans HyperFrames Studio, pas le rendu
-const IGNORES = new Set(["nested_structure_needs_subcomposition"]);
+// « nested_structure » ne concerne que l'affichage dans HyperFrames Studio, pas le rendu
+// « duplicate_media » : la même image à deux endroits, sans effet sur le rendu
+const IGNORES = new Set(["nested_structure_needs_subcomposition", "duplicate_media_discovery_risk"]);
 const args = process.argv.slice(2);
 const option = (n) => args.includes(`--${n}`);
 const fichiers = args.filter((a) => !a.startsWith("--"));
@@ -114,6 +115,14 @@ async function fabriquer(fichierJson) {
     }
     if (x.icone) return o.nu ? ic(x.icone, t, o.couleur ?? "var(--accent)", 2) : cadre("ic-t", ic(x.icone, Math.round(t * 0.5), "#fff", 2.2));
     if (x.emoji) return o.nu ? `<span class="emoji" style="font-size:${Math.round(t * 0.8)}px">${x.emoji}</span>` : cadre("", `<span class="emoji" style="font-size:${Math.round(t * 0.56)}px">${x.emoji}</span>`);
+    if (x.image && extname(x.image).toLowerCase() === ".svg") {
+      const src = resolve(BASE, x.image);
+      if (!existsSync(src)) throw new Error(`média introuvable : ${x.image}`);
+      const u = `l${++uniques}`;
+      const svg = (n) => readFileSync(src, "utf8").replace(/<\?xml[^>]*>/, "").replace(/id="([^"]+)"/g, `id="${u}$1"`).replace(/url\(#([^)]+)\)/g, `url(#${u}$1)`)
+        .replace(/<svg[^>]*?>/, (tete) => tete.replace(/\s(width|height|class)="[^"]*"/g, "").replace("<svg", `<svg width="${n}" height="${n}"`));
+      return o.nu ? svg(t) : cadre("", svg(Math.round(t * 0.72)));
+    }
     if (x.image) return o.nu ? `<img src="${media(x.image)}" style="width:${t}px;height:${t}px;object-fit:contain" />` : cadre("", `<img src="${media(x.image)}" />`);
     throw new Error(`visuel incompris : ${JSON.stringify(v)}`);
   };
@@ -295,8 +304,9 @@ window.__timelines["video"] = tl;
   // ---------- 7. contrôle, planche, rendu ----------
   const milieux = scenes.map((s) => arr(Math.min(s.fin - 0.4, Math.max(s.debut + 1.2, (s.debut + s.fin) / 2))));
   const ligne = [`${id} : ${DUREE.toFixed(1)} s · ${phrases.length} phrases · ${scenes.length} scènes · ${caps.length} sous-titres`];
-  if (!option("sans-controle")) ligne.push(controler(PROJET, [...milieux, ...caps.map((cp) => arr((cp.t0 + cp.t1) / 2))].slice(0, 60)));
-  if (!option("sans-planche")) ligne.push(planche(PROJET, [0, ...milieux, ...(fin ? [arr(DUREE - 0.5)] : [])], join(RENDUS, `${id}-planche.jpg`), join(RENDUS, `${id}-couverture.jpg`)));
+  if (!option("sans-controle")) ligne.push(controler(PROJET, [...milieux, ...scenes.map((s) => arr(Math.max(s.debut + 0.8, s.fin - 0.6))), ...caps.map((cp) => arr((cp.t0 + cp.t1) / 2))].slice(0, 70)));
+  const finsScenes = scenes.map((s) => arr(Math.max(s.debut + 0.8, s.fin - 0.6)));
+  if (!option("sans-planche")) ligne.push(planche(PROJET, [0, ...finsScenes, ...(fin ? [arr(DUREE - 0.5)] : [])], join(RENDUS, `${id}-planche.jpg`), join(RENDUS, `${id}-couverture.jpg`)));
   if (spec.publication) writeFileSync(join(RENDUS, `${id}.txt`), publication(spec.publication));
   for (const a of avis) console.log(`  ⚠ ${a}`);
   if (option("rendu")) {

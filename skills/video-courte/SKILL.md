@@ -23,10 +23,10 @@ sh <skill>/scripts/installer.sh      # vérifie node ≥ 18, ffmpeg, python3 ; i
 ## Le déroulé
 
 1. **Le sujet en une phrase.** Si l'utilisateur n'en donne pas, proposez-en 3 et laissez-le choisir.
-2. **Le script.** Lisez `references/ecrire.md` (accroches qui marchent, structure, longueur). 9 à 14 phrases, 110 à 170 mots, soit 45 à 70 s.
+2. **Le script.** Lisez `references/ecrire.md` (accroches qui marchent, structure, longueur). 9 à 14 phrases, 110 à 170 mots. Comptez 2,7 mots par seconde, plus 0,35 s entre deux phrases : 130 mots font environ 50 s.
 3. **Le fichier.** Écrivez `videos/<id>.json` dans le projet de l'utilisateur (le format est plus bas, le catalogue complet dans `references/scenes.md`). Les médias vont dans `videos/medias/`.
 4. **La fabrication.** `node <skill>/scripts/fabriquer.mjs videos/<id>.json` fait la voix, la page, le contrôle et la planche, sans rendu (environ 1 min).
-5. **La relecture.** Ouvrez **une seule image**, `videos/rendus/<id>-planche.jpg` : une vignette par scène, plus l'image 1. Corrigez le json, puis relancez la commande. La voix est en cache, seules les phrases changées sont refaites.
+5. **La relecture.** Ouvrez **une seule image**, `videos/rendus/<id>-planche.jpg` : l'image 1, puis une vignette par scène prise à sa fin, quand tous ses éléments sont arrivés, et la carte de fin. Corrigez le json, puis relancez la commande. La voix est en cache, seules les phrases changées sont refaites.
 6. **Le rendu.** Ajoutez `--rendu` (environ 1 min pour 45 s de vidéo). Vous obtenez `videos/rendus/<id>.mp4`, `-couverture.jpg` (l'image 1) et `<id>.txt` (titre, légende, hashtags, commentaire épinglé).
 7. **La publication.** Lisez `references/publier.md` : heures selon le pays du public, cadence, légende. Ne publiez rien sans l'accord explicite de l'utilisateur.
 
@@ -37,7 +37,7 @@ Ce skill coûte peu parce que le modèle écrit 60 à 120 lignes de JSON par vid
 - **N'ouvrez pas** `fabriquer.mjs`, `lib/*.mjs`, `style.css`, ni le `index.html` généré. Le catalogue des scènes suffit. Ouvrez le code seulement si une commande échoue et que son message ne suffit pas.
 - **Ne lisez une référence que pour son étape** : `ecrire.md` pour écrire, `scenes.md` pour choisir une scène, `modes.md` pour une voix, un rush ou des captures, `publier.md` pour publier. Une référence déjà lue dans la conversation ne se relit pas.
 - **Une planche, pas des captures.** Pour vérifier, regardez `<id>-planche.jpg` une fois, jamais une image par seconde. Ne regardez pas le MP4 image par image.
-- **Faites confiance au contrôle.** La commande lance le contrôle HyperFrames (texte qui déborde, texte caché, erreurs) et le résume en quelques lignes. « aucun débordement, aucune erreur » veut dire que c'est bon.
+- **Faites confiance au contrôle.** La commande lance le contrôle HyperFrames (texte qui déborde, texte caché, erreurs) et le résume en quelques lignes. « aucun débordement, aucune erreur » veut dire que c'est bon. Une ligne ✗ se corrige toujours. Une ligne ⚠ se lit, puis se corrige si elle touche un texte.
 - **Les lots se font en une commande.** Écrivez les N fichiers d'abord, puis `node fabriquer.mjs videos/a.json videos/b.json … --rendu`, en tâche de fond. Ne surveillez pas la sortie : attendez la fin.
 - **Corrigez sur place.** Pour une retouche, modifiez seulement la phrase ou la scène en cause dans le json. Ne réécrivez pas le fichier entier.
 - **Pas de recherche d'assets.** Les logos (`logo:bitcoin`, `logo:metamask`…) et 45 icônes (`icone:cle`…) sont intégrés. Ne cherchez une image sur le web que si l'utilisateur la demande.
@@ -58,7 +58,7 @@ Ce skill coûte peu parce que le modèle écrit 60 à 120 lignes de JSON par vid
       "scene": { "type": "chiffre", "valeur": "12", "apres": "mots", "au": "douze", "couleur": "accent" } },
     { "texte": "On l'appelle la phrase de récupération." }
   ],
-  "fin": { "texte": "Moi, c'est BDan.", "sous": "On parle de la nouvelle technologie." },
+  "fin": { "texte": "Moi, c'est BDan.", "sous": "On parle de la nouvelle technologie.", "audio": "medias/signature.wav" },
   "publication": { "titre": "…", "legende": "…", "hashtags": ["crypto"], "commentaire": "…" }
 }
 ```
@@ -67,6 +67,8 @@ Ce skill coûte peu parce que le modèle écrit 60 à 120 lignes de JSON par vid
 - **`scene`** : elle ouvre une nouvelle scène. Une phrase **sans** scène prolonge la précédente, ce qui laisse le temps de lire (en mode filmé, elle montre le visage ; `"scene": "suite"` prolonge alors la scène).
 - **`au`** : l'élément arrive sur ce mot de la phrase (par exemple `"au": "Ledger"`). Sans `au`, les éléments se répartissent seuls : un par phrase s'il y en a autant que de phrases, sinon à intervalles réguliers.
 - **Les visuels**, partout où une scène en accepte un : `"logo:binance"`, `"icone:cadenas"`, `"emoji:🔑"` ou `"medias/capture.png"`.
+- **`fin`** : la carte de fin (le logo de la `marque`, `texte`, `sous`). `audio` y joue une signature enregistrée. Sans `audio`, la carte reste 2 s, sans voix.
+- **`titre`** : le nom de la vidéo dans les fichiers (le titre YouTube va dans `publication`).
 - **Facultatifs** : `musique` (un fichier, baissé sous la voix), `couleurs` (`{"accent": "#2f6bff", "accent2": "#5fa3ff"}`), `sons: false` (sans souffles aux transitions), `blanc` (silence entre les phrases, 0,35 s), `pause` sur une phrase, `sousTitres: false`, `langue` (`"fr"` par défaut).
 - **La première phrase a toujours une scène.** L'image 1 sert de couverture dans les fils : un `titre` court, qui accroche.
 
